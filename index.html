@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alma Stark | Portfolio</title>
+  <meta name="description" content="Portfolio for Alma Stark, Digital Content Designer" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#090909;
+      --bg-2:#111111;
+      --panel:rgba(255,255,255,.035);
+      --panel-2:rgba(255,255,255,.05);
+      --line:rgba(255,255,255,.08);
+      --line-strong:rgba(255,255,255,.14);
+      --text:#f4f1ea;
+      --soft:#d2cdc4;
+      --muted:#908b84;
+      --accent:#d8ff62;
+      --accent-soft:rgba(216,255,98,.12);
+      --shadow:0 20px 60px rgba(0,0,0,.24);
+      --max:1440px;
+      --radius:24px;
+      --radius-sm:16px;
+      --ease:cubic-bezier(.22,.61,.36,1);
+    }
+
+    *{
+      box-sizing:border-box;
+      min-width:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+      -webkit-text-size-adjust:100%;
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:"Inter", system-ui, sans-serif;
+      color:var(--text);
+      line-height:1.6;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(216,255,98,.045), transparent 30%),
+        radial-gradient(circle at 85% 18%, rgba(255,255,255,.03), transparent 24%),
+        linear-gradient(180deg, #101010 0%, #090909 55%, #0a0a0a 100%);
+      overflow-x:hidden;
+      position:relative;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.07;
+      mix-blend-mode:soft-light;
+      background-image:url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'>\
+<filter id='n'>\
+<feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/>\
+</filter>\
+<rect width='220' height='220' filter='url(%23n)' opacity='1'/>\
+</svg>");
+      background-size:220px 220px;
+      z-index:0;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at center, transparent 55%, rgba(0,0,0,.18) 100%);
+      z-index:0;
+    }
+
+    img{
+      display:block;
+      max-width:100%;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    button{
+      font:inherit;
+    }
+
+    header, main, footer{
+      position:relative;
+      z-index:2;
+    }
+
+    .container{
+      width:min(var(--max), calc(100% - 40px));
+      margin-inline:auto;
+    }
+
+    .accent-dot{
+      display:inline-block;
+      width:.62rem;
+      height:.62rem;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 18px rgba(216,255,98,.45);
+      flex:0 0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:120;
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      background:rgba(10,10,10,.72);
+      border-bottom:1px solid var(--line);
+    }
+
+    .topbar-inner{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      font-size:.92rem;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      white-space:nowrap;
+      transition:transform .3s var(--ease), opacity .3s var(--ease);
+    }
+
+    .brand:hover{
+      transform:translateY(-1px);
+      opacity:.96;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .nav a{
+      position:relative;
+      font-size:.92rem;
+      color:var(--muted);
+      transition:color .25s ease;
+    }
+
+    .nav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-8px;
+      width:100%;
+      height:1px;
+      background:var(--accent);
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .3s var(--ease);
+    }
+
+    .nav a:hover{
+      color:var(--text);
+    }
+
+    .nav a:hover::after{
+      transform:scaleX(1);
+    }
+
+    .menu-toggle{
+      display:none;
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      border:1px solid var(--line-strong);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:background .25s ease, border-color .25s ease, transform .25s ease;
+    }
+
+    .menu-toggle:hover{
+      background:rgba(255,255,255,.07);
+      border-color:rgba(255,255,255,.22);
+      transform:translateY(-1px);
+    }
+
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after{
+      content:"";
+      display:block;
+      width:18px;
+      height:2px;
+      background:var(--text);
+      border-radius:999px;
+      position:relative;
+      transition:.28s var(--ease);
+    }
+
+    .menu-toggle span::before{
+      position:absolute;
+      top:-6px;
+    }
+
+    .menu-toggle span::after{
+      position:absolute;
+      top:6px;
+    }
+
+    .menu-toggle.is-open span{
+      background:transparent;
+    }
+
+    .menu-toggle.is-open span::before{
+      top:0;
+      transform:rotate(45deg);
+    }
+
+    .menu-toggle.is-open span::after{
+      top:0;
+      transform:rotate(-45deg);
+    }
+
+    .mobile-menu{
+      display:none;
+      border-top:1px solid var(--line);
+      background:rgba(10,10,10,.92);
+    }
+
+    .mobile-menu-inner{
+      padding:14px 0 18px;
+      display:grid;
+      gap:10px;
+    }
+
+    .mobile-menu a{
+      color:var(--soft);
+      padding:10px 2px;
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      width:520px;
+      height:520px;
+      right:-140px;
+      top:8%;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(216,255,98,.1), transparent 68%);
+      filter:blur(8px);
+      animation:floatGlow 10s ease-in-out infinite;
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:340px;
+      height:340px;
+      left:-90px;
+      bottom:6%;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,.04), transparent 70%);
+      animation:floatGlow 12s ease-in-out infinite reverse;
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    @keyframes floatGlow{
+      0%,100%{ transform:translate3d(0,0,0) scale(1); }
+      50%{ transform:translate3d(0,-16px,0) scale(1.04); }
+    }
+
+    .hero-grid{
+      width:100%;
+      display:grid;
+      grid-template-columns:minmax(0, 1.02fr) minmax(0, .98fr);
+      gap:48px;
+      align-items:end;
+      padding:76px 0 58px;
+    }
+
+    .micro{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      font-size:.78rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:24px;
+    }
+
+    .hero-copy h1{
+      margin:0;
+      font-size:clamp(4.2rem, 10vw, 8.8rem);
+      line-height:.9;
+      letter-spacing:-.085em;
+      font-weight:900;
+      text-transform:uppercase;
+      max-width:8ch;
+      text-wrap:balance;
+    }
+
+    .hero-copy h1 span{
+      display:inline-block;
+      font-weight:300;
+      color:var(--soft);
+    }
+
+    .hero-sub{
+      margin:26px 0 0;
+      max-width:56ch;
+      color:var(--soft);
+      font-size:1.03rem;
+    }
+
+    .hero-actions{
+      margin-top:30px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:50px;
+      padding:0 18px;
+      border-radius:999px;
+      border:1px solid var(--line-strong);
+      transition:
+        transform .25s var(--ease),
+        border-color .25s ease,
+        background .25s ease,
+        color .25s ease,
+        box-shadow .25s ease;
+      font-size:.92rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-primary{
+      background:var(--accent);
+      color:#0b0b0b;
+      border-color:transparent;
+      box-shadow:0 10px 30px rgba(216,255,98,.18);
+    }
+
+    .btn-primary:hover{
+      box-shadow:0 16px 36px rgba(216,255,98,.22);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.2);
+    }
+
+    .hero-side{
+      display:grid;
+      gap:18px;
+      justify-items:end;
+    }
+
+    .hero-card{
+      position:relative;
+      width:min(100%, 560px);
+      aspect-ratio:4 / 5;
+      overflow:hidden;
+      border:1px solid var(--line-strong);
+      border-radius:28px;
+      background:#111;
+      box-shadow:var(--shadow);
+      transform:translateY(0);
+      transition:transform .45s var(--ease), border-color .3s ease;
+    }
+
+    .hero-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.22);
+    }
+
+    .hero-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%);
+      transform:scale(1.02);
+      transition:transform .7s var(--ease), filter .45s ease;
+    }
+
+    .hero-card:hover img{
+      transform:scale(1.06);
+      filter:grayscale(25%);
+    }
+
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 35%, rgba(0,0,0,.1));
+      pointer-events:none;
+    }
+
+    .hero-overlay{
+      position:absolute;
+      inset:auto 0 0 0;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:end;
+      padding:18px 18px 16px;
+      background:linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,.24), transparent);
+      font-size:.92rem;
+      color:var(--soft);
+      z-index:2;
+    }
+
+    .hero-overlay-left{
+      max-width:28ch;
+      line-height:1.45;
+    }
+
+    .hero-overlay-right{
+      white-space:nowrap;
+      color:var(--muted);
+    }
+
+    .section{
+      padding:72px 0;
+      border-bottom:1px solid var(--line);
+      scroll-margin-top:92px;
+    }
+
+    .section-frame{
+      border:1px solid var(--line);
+      border-radius:30px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.024), rgba(255,255,255,.014));
+      overflow:hidden;
+      box-shadow:0 18px 50px rgba(0,0,0,.14);
+    }
+
+    .section-top{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:16px 20px;
+      border-bottom:1px solid var(--line);
+      font-size:.76rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      background:rgba(255,255,255,.012);
+    }
+
+    .section-body{
+      padding:30px;
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:minmax(0, 320px) minmax(0, 1fr);
+      gap:30px;
+      align-items:start;
+      margin-bottom:30px;
+    }
+
+    .section-title-wrap{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      align-items:flex-start;
+      width:100%;
+    }
+
+    .section-intro{
+      margin:0;
+      max-width:70ch;
+      color:var(--soft);
+      font-size:1rem;
+      text-align:left;
+      text-wrap:pretty;
+    }
+
+    .section-title{
+      margin:0;
+      font-size:clamp(2.3rem, 5vw, 4.9rem);
+      line-height:.95;
+      letter-spacing:-.07em;
+      text-transform:uppercase;
+      text-align:left;
+      text-wrap:balance;
+      max-width:14ch;
+    }
+
+    .about-grid{
+      margin-top:28px;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .block{
+      border:1px solid var(--line-strong);
+      border-radius:22px;
+      background:var(--panel);
+      padding:24px;
+      transition:transform .28s var(--ease), border-color .28s ease, background .28s ease;
+    }
+
+    .block:hover{
+      transform:translateY(-3px);
+      border-color:rgba(255,255,255,.2);
+      background:rgba(255,255,255,.05);
+    }
+
+    .block h3{
+      margin:0 0 16px;
+      font-size:1.04rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .block p{
+      margin:0 0 12px;
+      color:var(--soft);
+    }
+
+    .block p:last-child{
+      margin-bottom:0;
+    }
+
+    .impact-list{
+      display:grid;
+      gap:14px;
+    }
+
+    .impact-item{
+      display:grid;
+      grid-template-columns:22px 1fr;
+      gap:14px;
+      align-items:start;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+    }
+
+    .impact-item:first-child{
+      border-top:none;
+      padding-top:0;
+    }
+
+    .impact-num{
+      color:var(--accent);
+      font-size:.85rem;
+      font-weight:800;
+      line-height:1.5;
+    }
+
+    .impact-text{
+      color:var(--text);
+    }
+
+    .about-image,
+    .editorial-image{
+      margin-top:18px;
+      border:1px solid var(--line-strong);
+      border-radius:26px;
+      overflow:hidden;
+      background:#111;
+      box-shadow:var(--shadow);
+    }
+
+    .about-image{
+      aspect-ratio:16 / 7;
+    }
+
+    .editorial-image{
+      aspect-ratio:16 / 6;
+    }
+
+    .about-image img,
+    .editorial-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%);
+      transition:transform .7s var(--ease), filter .45s ease;
+    }
+
+    .about-image:hover img,
+    .editorial-image:hover img{
+      transform:scale(1.04);
+      filter:grayscale(22%);
+    }
+
+    .process-wrap{
+      display:grid;
+      gap:24px;
+    }
+
+    .process-strip{
+      display:grid;
+      grid-template-columns:repeat(5, minmax(0, 1fr));
+      border:1px solid var(--line-strong);
+      border-radius:24px;
+      overflow:hidden;
+      background:rgba(255,255,255,.018);
+    }
+
+    .step{
+      min-height:152px;
+      padding:24px 18px;
+      border-right:1px solid var(--line);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:14px;
+      position:relative;
+      overflow:hidden;
+      transition:background .25s ease;
+    }
+
+    .step::before{
+      content:"";
+      position:absolute;
+      left:18px;
+      top:18px;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:rgba(216,255,98,.08);
+      filter:blur(2px);
+      pointer-events:none;
+    }
+
+    .step:hover{
+      background:rgba(255,255,255,.032);
+    }
+
+    .step:last-child{
+      border-right:none;
+    }
+
+    .step small{
+      position:relative;
+      z-index:1;
+      font-size:.75rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--accent);
+      font-weight:700;
+    }
+
+    .step strong{
+      position:relative;
+      z-index:1;
+      font-size:1.24rem;
+      letter-spacing:-.03em;
+    }
+
+    .tools-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      border:1px solid var(--line-strong);
+      border-right:none;
+      border-bottom:none;
+      border-radius:24px;
+      overflow:hidden;
+    }
+
+    .tool{
+      min-height:150px;
+      padding:22px;
+      border-right:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.016);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:12px;
+      transition:background .25s ease, transform .25s var(--ease);
+    }
+
+    .tool:hover{
+      background:rgba(255,255,255,.03);
+      transform:translateY(-2px);
+    }
+
+    .tool small{
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.74rem;
+    }
+
+    .tool small .num{
+      color:var(--accent);
+      font-weight:700;
+    }
+
+    .tool strong{
+      font-size:1.04rem;
+      line-height:1.38;
+    }
+
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .project{
+      border:1px solid var(--line-strong);
+      border-radius:24px;
+      overflow:hidden;
+      background:#101010;
+      transition:
+        transform .28s var(--ease),
+        border-color .28s ease,
+        background-color .28s ease,
+        box-shadow .28s ease;
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
+    }
+
+    .project:hover{
+      transform:translateY(-6px);
+      border-color:rgba(255,255,255,.22);
+      background:#121212;
+      box-shadow:0 20px 42px rgba(0,0,0,.2);
+    }
+
+    .project-media{
+      aspect-ratio:4 / 5;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+      background:#111;
+      position:relative;
+    }
+
+    .project-media::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent 45%, rgba(0,0,0,.08) 100%);
+      pointer-events:none;
+    }
+
+    .project-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%);
+      transition:transform .45s var(--ease), filter .4s ease;
+    }
+
+    .project:hover .project-media img{
+      transform:scale(1.05);
+      filter:grayscale(20%);
+    }
+
+    .project-body{
+      padding:22px;
+    }
+
+    .project-kicker{
+      display:block;
+      margin-bottom:10px;
+      font-size:.76rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .project h3{
+      margin:0 0 10px;
+      font-size:1.34rem;
+      letter-spacing:-.03em;
+    }
+
+    .project p{
+      margin:0 0 16px;
+      color:var(--soft);
+    }
+
+    .project-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:.88rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+
+    .project-link::after{
+      content:"→";
+      transition:transform .25s var(--ease);
+    }
+
+    .project:hover .project-link::after{
+      transform:translateX(4px);
+    }
+
+    .experience-grid,
+    .education-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .exp-card{
+      border:1px solid var(--line-strong);
+      border-radius:22px;
+      padding:24px;
+      background:var(--panel);
+      transition:transform .25s var(--ease), border-color .25s ease, background .25s ease;
+    }
+
+    .exp-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(255,255,255,.2);
+      background:rgba(255,255,255,.048);
+    }
+
+    .exp-card h3{
+      margin:0 0 10px;
+      font-size:1.24rem;
+      letter-spacing:-.03em;
+    }
+
+    .exp-card p{
+      margin:0;
+      color:var(--soft);
+    }
+
+    .quote-panel{
+      border:1px solid var(--line-strong);
+      border-radius:30px;
+      padding:42px 28px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.025), rgba(255,255,255,.008)),
+        radial-gradient(circle at 10% 50%, rgba(216,255,98,.08), transparent 32%);
+      box-shadow:var(--shadow);
+    }
+
+    .quote-panel p{
+      margin:0;
+      max-width:18ch;
+      font-size:clamp(2rem, 4vw, 4rem);
+      line-height:1.02;
+      letter-spacing:-.06em;
+      text-transform:uppercase;
+      font-weight:800;
+      text-wrap:balance;
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:minmax(0, 1.1fr) minmax(0, .9fr);
+      gap:18px;
+    }
+
+    .contact-big{
+      border:1px solid var(--line-strong);
+      border-radius:24px;
+      padding:28px;
+      min-height:290px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:24px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.018)),
+        radial-gradient(circle at 20% 20%, rgba(216,255,98,.06), transparent 30%);
+    }
+
+    .contact-big h2{
+      margin:0;
+      font-size:clamp(2.7rem, 6vw, 5.8rem);
+      line-height:.94;
+      letter-spacing:-.07em;
+      text-transform:uppercase;
+      max-width:8ch;
+      text-wrap:balance;
+    }
+
+    .contact-big p{
+      margin:0;
+      color:var(--soft);
+      max-width:50ch;
+    }
+
+    .contact-list{
+      border:1px solid var(--line-strong);
+      border-radius:24px;
+      background:var(--panel);
+      display:grid;
+      overflow:hidden;
+    }
+
+    .contact-row{
+      padding:22px 24px;
+      border-bottom:1px solid var(--line);
+      transition:background .25s ease;
+    }
+
+    .contact-row:hover{
+      background:rgba(255,255,255,.025);
+    }
+
+    .contact-row:last-child{
+      border-bottom:none;
+    }
+
+    .contact-row small{
+      display:block;
+      margin-bottom:8px;
+      color:var(--muted);
+      font-size:.75rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .contact-row span,
+    .contact-row a{
+      color:var(--text);
+      font-size:1rem;
+      word-break:break-word;
+    }
+
+    .contact-row a:hover{
+      color:var(--accent);
+    }
+
+    .footer{
+      padding:22px 0 34px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:
+        opacity .7s var(--ease),
+        transform .7s var(--ease);
+      will-change:transform, opacity;
+    }
+
+    .reveal.is-visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{
+        scroll-behavior:auto;
+      }
+
+      *,
+      *::before,
+      *::after{
+        animation:none !important;
+        transition:none !important;
+      }
+
+      .reveal{
+        opacity:1 !important;
+        transform:none !important;
+      }
+    }
+
+    @media (max-width: 1100px){
+      .hero{
+        min-height:auto;
+      }
+
+      .hero-grid,
+      .section-head,
+      .about-grid,
+      .experience-grid,
+      .education-grid,
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-grid{
+        align-items:start;
+      }
+
+      .hero-side{
+        justify-items:start;
+      }
+
+      .hero-card{
+        width:100%;
+        max-width:680px;
+      }
+
+      .section-head{
+        gap:18px;
+      }
+
+      .section-title{
+        max-width:16ch;
+      }
+
+      .process-strip{
+        grid-template-columns:1fr;
+      }
+
+      .step{
+        min-height:auto;
+        border-right:none;
+        border-bottom:1px solid var(--line);
+      }
+
+      .step:last-child{
+        border-bottom:none;
+      }
+
+      .tools-grid,
+      .projects-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px){
+      .container{
+        width:min(var(--max), calc(100% - 24px));
+      }
+
+      .topbar-inner{
+        min-height:66px;
+      }
+
+      .brand{
+        font-size:.82rem;
+        letter-spacing:.14em;
+      }
+
+      .nav{
+        display:none;
+      }
+
+      .menu-toggle{
+        display:inline-flex;
+      }
+
+      .mobile-menu{
+        display:none;
+      }
+
+      .mobile-menu.is-open{
+        display:block;
+      }
+
+      .hero{
+        min-height:auto;
+      }
+
+      .hero-grid{
+        gap:28px;
+        padding:34px 0 36px;
+      }
+
+      .micro{
+        margin-bottom:18px;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+        font-size:.72rem;
+        letter-spacing:.15em;
+      }
+
+      .hero-copy h1{
+        font-size:clamp(2.8rem, 15vw, 4.5rem);
+        line-height:.92;
+        max-width:100%;
+      }
+
+      .hero-sub{
+        margin-top:18px;
+        font-size:.98rem;
+        line-height:1.72;
+      }
+
+      .hero-actions{
+        margin-top:22px;
+      }
+
+      .btn{
+        min-height:48px;
+        padding:0 16px;
+        font-size:.84rem;
+      }
+
+      .hero-card{
+        aspect-ratio:4 / 5.15;
+        border-radius:22px;
+      }
+
+      .hero-overlay{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+        padding:14px;
+        font-size:.88rem;
+      }
+
+      .hero-overlay-left{
+        max-width:100%;
+      }
+
+      .hero-overlay-right{
+        white-space:normal;
+      }
+
+      .section{
+        padding:42px 0;
+      }
+
+      .section-frame,
+      .quote-panel,
+      .contact-big,
+      .contact-list,
+      .process-strip,
+      .about-image,
+      .editorial-image,
+      .project,
+      .exp-card,
+      .block{
+        border-radius:20px;
+      }
+
+      .section-top{
+        padding:14px 16px;
+        font-size:.7rem;
+      }
+
+      .section-body{
+        padding:18px 16px;
+      }
+
+      .section-head{
+        margin-bottom:22px;
+        gap:14px;
+      }
+
+      .section-title-wrap{
+        gap:14px;
+      }
+
+      .section-intro{
+        font-size:.96rem;
+        line-height:1.75;
+      }
+
+      .section-title{
+        font-size:clamp(1.9rem, 10vw, 3rem);
+        line-height:1;
+        letter-spacing:-.05em;
+        max-width:100%;
+      }
+
+      .about-grid,
+      .experience-grid,
+      .education-grid,
+      .tools-grid,
+      .projects-grid{
+        grid-template-columns:1fr;
+      }
+
+      .block,
+      .exp-card,
+      .tool,
+      .project-body,
+      .contact-big,
+      .contact-row{
+        padding:18px;
+      }
+
+      .impact-item{
+        gap:12px;
+      }
+
+      .about-image,
+      .editorial-image,
+      .project-media{
+        aspect-ratio:16 / 10;
+      }
+
+      .project h3{
+        font-size:1.2rem;
+      }
+
+      .quote-panel{
+        padding:24px 18px;
+      }
+
+      .quote-panel p{
+        font-size:clamp(1.5rem, 9vw, 2.4rem);
+        max-width:100%;
+        line-height:1.08;
+      }
+
+      .contact-big{
+        min-height:auto;
+      }
+
+      .contact-big h2{
+        font-size:clamp(2rem, 12vw, 3.2rem);
+        max-width:100%;
+      }
+
+      .footer{
+        padding:18px 0 28px;
+        font-size:.84rem;
+      }
+    }
+
+    @media (max-width: 420px){
+      .container{
+        width:min(var(--max), calc(100% - 20px));
+      }
+
+      .hero-grid{
+        padding:26px 0 30px;
+      }
+
+      .hero-copy h1{
+        font-size:clamp(2.35rem, 14vw, 3.5rem);
+      }
+
+      .hero-sub{
+        font-size:.94rem;
+      }
+
+      .section{
+        padding:34px 0;
+      }
+
+      .section-top{
+        padding:12px 14px;
+      }
+
+      .section-body{
+        padding:16px 14px;
+      }
+
+      .block,
+      .exp-card,
+      .tool,
+      .project-body,
+      .contact-big,
+      .contact-row{
+        padding:16px;
+      }
+
+      .tool{
+        min-height:auto;
+      }
+
+      .project-link{
+        font-size:.82rem;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#top" class="brand">
+        <span class="accent-dot"></span>
+        <span>Alma Stark</span>
+      </a>
+
+      <nav class="nav" aria-label="Huvudmeny">
+        <a href="#about">Hem</a>
+        <a href="#process">Arbetsprocess</a>
+        <a href="#tools">Kompetenser</a>
+        <a href="#projects">Case-studier</a>
+        <a href="#experience">Erfarenhet</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Öppna meny" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="container mobile-menu-inner">
+        <a href="#about">Hem</a>
+        <a href="#process">Arbetsprocess</a>
+        <a href="#tools">Kompetenser</a>
+        <a href="#projects">Case-studier</a>
+        <a href="#experience">Erfarenhet</a>
+        <a href="#contact">Kontakt</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="micro">
+            <span>Digital Content Designer</span>
+          </div>
+
+          <h1>
+            Innehåll<br>
+            <span>som fungerar</span>
+          </h1>
+
+          <p class="hero-sub">
+            Om det inte är begripligt, så är det inte funktionellt. Jag skapar digitalt innehåll som sätter användaren i fokus och gör det svåra lätt att förstå.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">Se projekt</a>
+            <a class="btn btn-secondary" href="#contact">Kontakt</a>
+          </div>
+        </div>
+
+        <div class="hero-side reveal">
+          <div class="hero-card">
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1400&q=80"
+              alt="Portrait placeholder for Alma Stark"
+            />
+            <div class="hero-overlay">
+              <span class="hero-overlay-left">
+                Med bakgrund inom digital content design, visuell kommunikation och undervisning arbetar jag där innehåll, struktur och användarbehov möts.
+              </span>
+              <span class="hero-overlay-right">Stockholm / Sweden</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="about">
+      <div class="container section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Om mig</span>
+        </div>
+
+        <div class="section-body">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <p class="section-intro">
+                Mitt fokus är att göra information tydlig, strukturerad och relevant, oavsett om det handlar om webb, utbildning eller digitala tjänster. För mig handlar arbetet inte om att bara göra något snyggt. Det handlar om att förstå vad som faktiskt behövs, vad användaren måste förstå och vad som kan tas bort.
+              </p>
+              <h2 class="section-title">När innehåll blir tydligt, börjar det fungera</h2>
+            </div>
+          </div>
+
+          <div class="about-grid">
+            <div class="block">
+              <h3>Vad jag gör</h3>
+              <div class="impact-list">
+                <div class="impact-item">
+                  <div class="impact-num">01</div>
+                  <div class="impact-text">Gör komplex information begriplig</div>
+                </div>
+                <div class="impact-item">
+                  <div class="impact-num">02</div>
+                  <div class="impact-text">Skapar struktur i innehåll och flöden</div>
+                </div>
+                <div class="impact-item">
+                  <div class="impact-num">03</div>
+                  <div class="impact-text">Anpassar innehåll efter målgrupp och situation</div>
+                </div>
+                <div class="impact-item">
+                  <div class="impact-num">04</div>
+                  <div class="impact-text">Får innehåll att leda till handling, inte bara läsning</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="block">
+              <h3>Hur jag tänker</h3>
+              <p>Jag börjar inte med design, jag börjar med varför.</p>
+              <p>Vad behöver användaren förstå?</p>
+              <p>Vad ska fungera efteråt?</p>
+              <p>Vad kan tas bort?</p>
+              <p>Därifrån bygger jag struktur, innehåll och form.</p>
+            </div>
+          </div>
+
+          <div class="about-image">
+            <img
+              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80"
+              alt="Editorial image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="process">
+      <div class="container section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Arbetsprocess</span>
+        </div>
+
+        <div class="section-body">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <p class="section-intro">
+                Jag arbetar praktiskt och strukturerat. Det gör att innehållet inte bara produceras, utan fungerar i verkligheten.
+              </p>
+              <h2 class="section-title">Från rörigt till användbart</h2>
+            </div>
+          </div>
+
+          <div class="process-wrap">
+            <div class="process-strip">
+              <div class="step">
+                <small>Step 01</small>
+                <strong>Förstå</strong>
+              </div>
+              <div class="step">
+                <small>Step 02</small>
+                <strong>Strukturera</strong>
+              </div>
+              <div class="step">
+                <small>Step 03</small>
+                <strong>Formge</strong>
+              </div>
+              <div class="step">
+                <small>Step 04</small>
+                <strong>Testa</strong>
+              </div>
+              <div class="step">
+                <small>Step 05</small>
+                <strong>Justera</strong>
+              </div>
+            </div>
+
+            <div class="editorial-image">
+              <img
+                src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1600&q=80"
+                alt="Process image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="tools">
+      <div class="container section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Kompetenser</span>
+        </div>
+
+        <div class="section-body">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <p class="section-intro">
+                Innehåll måste hålla ihop, gå att förstå och fungera för rätt person i rätt situation.
+              </p>
+              <h2 class="section-title">Det här använder jag för att få saker att fungera</h2>
+            </div>
+          </div>
+
+          <div class="tools-grid">
+            <div class="tool">
+              <small><span class="num">01</span></small>
+              <strong>Content design och digital kommunikation</strong>
+            </div>
+            <div class="tool">
+              <small><span class="num">02</span></small>
+              <strong>Informationsstruktur och klarspråk</strong>
+            </div>
+            <div class="tool">
+              <small><span class="num">03</span></small>
+              <strong>Pedagogiskt innehåll och utbildningsmaterial</strong>
+            </div>
+            <div class="tool">
+              <small><span class="num">04</span></small>
+              <strong>Visuell form (Adobe, Figma)</strong>
+            </div>
+            <div class="tool">
+              <small><span class="num">05</span></small>
+              <strong>Webbcontent och användarflöden</strong>
+            </div>
+            <div class="tool">
+              <small><span class="num">06</span></small>
+              <strong>Samarbete och koordinering</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="projects">
+      <div class="container section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Case-studier</span>
+        </div>
+
+        <div class="section-body">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <p class="section-intro">
+                Här finns plats för tydliga case. Senare kan du länka varje projekt till en separat case study-sida.
+              </p>
+              <h2 class="section-title">Projekt att länka vidare till</h2>
+            </div>
+          </div>
+
+          <div class="projects-grid">
+            <article class="project">
+              <div class="project-media">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Alfra Svenska" />
+              </div>
+              <div class="project-body">
+                <span class="project-kicker">Case 01</span>
+                <h3>Alfra Svenska</h3>
+                <p>En lärmiljö där innehåll faktiskt leder till förståelse. Struktur för språkinlärning, kurser, tester och progression.</p>
+                <a href="#" class="project-link">Se projekt</a>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-media">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80" alt="Integrationsarbete" />
+              </div>
+              <div class="project-body">
+                <span class="project-kicker">Case 02</span>
+                <h3>Integrationsarbete</h3>
+                <p>Kommunikation som måste fungera i verkligheten. Informationsmaterial, samordning och anpassning efter deltagarnas behov.</p>
+                <a href="#" class="project-link">Se projekt</a>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-media">
+                <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=1200&q=80" alt="Pedagogiskt material" />
+              </div>
+              <div class="project-body">
+                <span class="project-kicker">Case 03</span>
+                <h3>Undervisning & material</h3>
+                <p>Att förklara det svåra på ett sätt som går att ta till sig. Planering, undervisning och pedagogiskt material.</p>
+                <a href="#" class="project-link">Se projekt</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="experience">
+      <div class="container section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Erfarenhet</span>
+        </div>
+
+        <div class="section-body">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <p class="section-intro">
+                Jag söker en roll där tydlighet, struktur och användarperspektiv är avgörande. Där innehåll inte bara ska publiceras, utan förstås och användas.
+              </p>
+              <h2 class="section-title">Där innehåll måste fungera på riktigt</h2>
+            </div>
+          </div>
+
+          <div class="experience-grid">
+            <div class="exp-card">
+              <h3>Alfra Svenska</h3>
+              <p>Utvecklat struktur för språkinlärning, skapat kurser, tester och innehåll, samt arbetat med hur innehåll presenteras och används med fokus på tydlighet och progression.</p>
+            </div>
+
+            <div class="exp-card">
+              <h3>Integrationsarbete</h3>
+              <p>Planerat och samordnat aktiviteter, tagit fram informationsmaterial, anpassat kommunikation efter deltagarnas behov och fungerat som länk mellan olika perspektiv.</p>
+            </div>
+
+            <div class="exp-card">
+              <h3>Undervisning</h3>
+              <p>Planerat och genomfört undervisning, förenklat komplexa moment och skapat pedagogiskt material kopplat till verkliga behov.</p>
+            </div>
+
+            <div class="exp-card">
+              <h3>Digital Content Designer</h3>
+              <p>Med bakgrund inom digital content design, visuell kommunikation och utbildning arbetar jag där innehåll, struktur och användarbehov möts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="education">
+      <div class="container section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Utbildning</span>
+        </div>
+
+        <div class="section-body">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <p class="section-intro">
+                Kombinationen av content, visuell kommunikation och verklighetsnära arbete gör att jag rör mig naturligt mellan budskap, struktur och användning.
+              </p>
+              <h2 class="section-title">Utbildning kopplad till verkligt arbete</h2>
+            </div>
+          </div>
+
+          <div class="education-grid">
+            <div class="exp-card">
+              <h3>Digital Content Designer</h3>
+              <p>Medieinstitutet, Stockholm. Verklighetsbaserade case, innehåll för webb och digitala tjänster, och förståelse för hur struktur, UX och content hänger ihop.</p>
+            </div>
+
+            <div class="exp-card">
+              <h3>Kandidatexamen i visuell kommunikation</h3>
+              <p>Grafisk design, visuell form, innehållsproduktion och kommunikation med grund i att arbeta med budskap och målgrupp.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <div class="quote-panel">
+          <p>INNEHÅLL SKA INTE BARA PUBLICERAS. DET SKA FÖRSTÅS OCH ANVÄNDAS.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="contact">
+      <div class="container section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Kontakt</span>
+        </div>
+
+        <div class="section-body">
+          <div class="contact-grid">
+            <div class="contact-big">
+              <h2>Låt oss göra det glasklart</h2>
+              <p>
+                Jag söker en roll där innehåll måste fungera på riktigt. Där tydlighet, struktur och användarperspektiv är avgörande.
+              </p>
+            </div>
+
+            <div class="contact-list">
+              <div class="contact-row">
+                <small>Namn</small>
+                <span>Alma Stark</span>
+              </div>
+              <div class="contact-row">
+                <small>Roll</small>
+                <span>Digital Content Designer</span>
+              </div>
+              <div class="contact-row">
+                <small>E-post</small>
+                <a href="mailto:almastark08@gmail.com">almastark08@gmail.com</a>
+              </div>
+              <div class="contact-row">
+                <small>LinkedIn</small>
+                <a href="#">linkedin.com/in/alma-stark</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Alma Stark | Digital Content Designer
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('is-open');
+      menuToggle.classList.toggle('is-open', isOpen);
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('is-open');
+        menuToggle.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

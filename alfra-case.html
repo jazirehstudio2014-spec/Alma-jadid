@@ -167,15 +167,14 @@
     }
 
     .hero{
-      padding:76px 0 46px;
+      padding:76px 0 44px;
       border-bottom:1px solid var(--line);
-      overflow:hidden;
     }
 
     .hero-grid{
       display:grid;
       grid-template-columns:minmax(0, 1.02fr) minmax(0, .98fr);
-      gap:32px;
+      gap:34px;
       align-items:end;
     }
 
@@ -187,16 +186,16 @@
       letter-spacing:.18em;
       text-transform:uppercase;
       color:var(--muted);
-      margin-bottom:22px;
+      margin-bottom:20px;
     }
 
     .hero-copy h1{
       margin:0;
-      font-size:clamp(3.2rem, 7vw, 6.2rem);
+      font-size:clamp(3.1rem, 7vw, 6.2rem);
       line-height:.9;
       letter-spacing:-.06em;
       text-transform:uppercase;
-      max-width:9ch;
+      max-width:8.5ch;
       text-wrap:balance;
     }
 
@@ -207,10 +206,43 @@
     }
 
     .hero-sub{
-      margin:24px 0 0;
+      margin:22px 0 0;
       max-width:58ch;
       color:var(--soft);
       font-size:1.04rem;
+    }
+
+    .meta-strip{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .meta-card{
+      border:1px solid var(--line-strong);
+      border-radius:20px;
+      background:var(--panel);
+      padding:18px;
+      min-height:148px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      justify-content:flex-start;
+    }
+
+    .meta-card small{
+      display:block;
+      color:var(--muted);
+      font-size:.72rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .meta-card strong{
+      display:block;
+      font-size:1rem;
+      line-height:1.45;
     }
 
     .hero-card{
@@ -234,7 +266,7 @@
     }
 
     .hero-card:hover img{
-      transform:scale(1.06);
+      transform:scale(1.05);
       filter:grayscale(22%);
     }
 
@@ -242,7 +274,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 35%, rgba(0,0,0,.14));
+      background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 35%, rgba(0,0,0,.18));
       pointer-events:none;
     }
 
@@ -250,7 +282,7 @@
       position:absolute;
       inset:auto 0 0 0;
       padding:18px;
-      background:linear-gradient(to top, rgba(0,0,0,.8), rgba(0,0,0,.22), transparent);
+      background:linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.26), transparent);
       z-index:2;
     }
 
@@ -267,37 +299,8 @@
       margin:0;
       color:var(--soft);
       font-size:.94rem;
-      line-height:1.5;
-      max-width:28ch;
-    }
-
-    .meta-strip{
-      margin-top:22px;
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:14px;
-    }
-
-    .meta-card{
-      border:1px solid var(--line-strong);
-      border-radius:20px;
-      background:var(--panel);
-      padding:18px;
-    }
-
-    .meta-card small{
-      display:block;
-      margin-bottom:8px;
-      color:var(--muted);
-      font-size:.72rem;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-    }
-
-    .meta-card strong{
-      display:block;
-      font-size:1rem;
-      line-height:1.4;
+      line-height:1.55;
+      max-width:30ch;
     }
 
     .section{
@@ -332,16 +335,16 @@
     }
 
     .section-head{
-      display:grid;
-      grid-template-columns:minmax(0, 280px) minmax(0, 1fr);
-      gap:30px;
-      align-items:start;
-      margin-bottom:22px;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:16px;
+      margin-bottom:24px;
     }
 
     .section-title{
       margin:0;
-      font-size:clamp(1.85rem, 4vw, 3.7rem);
+      font-size:clamp(1.9rem, 4vw, 3.8rem);
       line-height:.94;
       letter-spacing:-.07em;
       text-transform:uppercase;
@@ -354,42 +357,6 @@
       color:var(--soft);
       font-size:1rem;
       max-width:66ch;
-    }
-
-    .feature-image{
-      margin-top:22px;
-      border:1px solid var(--line-strong);
-      border-radius:26px;
-      overflow:hidden;
-      background:#111;
-      box-shadow:var(--shadow);
-      aspect-ratio:16 / 7;
-      position:relative;
-    }
-
-    .feature-image.tall{
-      aspect-ratio:16 / 9;
-    }
-
-    .feature-image img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      filter:grayscale(100%);
-      transition:transform .7s var(--ease), filter .45s ease;
-    }
-
-    .feature-image:hover img{
-      transform:scale(1.04);
-      filter:grayscale(20%);
-    }
-
-    .feature-image::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(180deg, transparent 42%, rgba(0,0,0,.08) 100%);
-      pointer-events:none;
     }
 
     .two-col{
@@ -415,6 +382,43 @@
     .block p{
       margin:0;
       color:var(--soft);
+    }
+
+    .feature-image{
+      margin-top:22px;
+      border:1px solid var(--line-strong);
+      border-radius:26px;
+      overflow:hidden;
+      background:#111;
+      box-shadow:var(--shadow);
+      aspect-ratio:16 / 7;
+      position:relative;
+    }
+
+    .feature-image.tall{
+      aspect-ratio:16 / 9;
+      margin-top:0;
+    }
+
+    .feature-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%);
+      transition:transform .7s var(--ease), filter .45s ease;
+    }
+
+    .feature-image:hover img{
+      transform:scale(1.04);
+      filter:grayscale(22%);
+    }
+
+    .feature-image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent 42%, rgba(0,0,0,.08) 100%);
+      pointer-events:none;
     }
 
     .list{
@@ -496,8 +500,10 @@
       border-radius:22px;
       background:var(--panel);
       padding:24px;
-      display:grid;
-      gap:14px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:210px;
     }
 
     .decision-card h3{
@@ -505,15 +511,20 @@
       font-size:1rem;
       text-transform:uppercase;
       letter-spacing:.08em;
+      color:var(--accent);
     }
 
     .decision-card p{
       margin:0;
       color:var(--soft);
+      font-size:1rem;
+      line-height:1.65;
     }
 
     .decision-card strong{
       color:var(--text);
+      display:inline;
+      font-weight:700;
     }
 
     .result-grid{
@@ -575,7 +586,6 @@
 
     @media (max-width: 1100px){
       .hero-grid,
-      .section-head,
       .two-col,
       .decision-grid,
       .result-grid{
@@ -588,6 +598,10 @@
 
       .hero-card{
         max-width:680px;
+      }
+
+      .feature-image.tall{
+        margin-top:22px;
       }
     }
 
@@ -624,11 +638,6 @@
         border-radius:22px;
       }
 
-      .feature-image,
-      .feature-image.tall{
-        aspect-ratio:16 / 10;
-      }
-
       .section{
         padding:28px 0;
       }
@@ -652,9 +661,19 @@
         padding:18px 16px;
       }
 
+      .section-head{
+        gap:14px;
+        margin-bottom:20px;
+      }
+
       .section-title{
-        font-size:clamp(1.6rem, 9vw, 2.6rem);
+        font-size:clamp(1.6rem, 9vw, 2.7rem);
         max-width:100%;
+      }
+
+      .section-intro{
+        font-size:.96rem;
+        line-height:1.72;
       }
 
       .insight-title{
@@ -668,6 +687,15 @@
       .quote-panel,
       .insight-panel{
         padding:18px;
+      }
+
+      .decision-card{
+        min-height:auto;
+      }
+
+      .feature-image,
+      .feature-image.tall{
+        aspect-ratio:16 / 10;
       }
 
       .quote-panel p{
@@ -748,8 +776,8 @@
             alt="Placeholder image for Alfra case hero"
           />
           <div class="hero-overlay">
-            <small>Byt ut bilden senare</small>
-            <p>Här kan du lägga en egen mockup av startsidan, produktsidan eller ett skärmutsnitt från projektet.</p>
+            <small>Om Alfra</small>
+            <p>Alfra är en digital plattform med utbildningsstöd för vuxna språkinlärare i Sverige, med fokus på tydliga resurser, självständig inlärning och praktisk språkutveckling.</p>
           </div>
         </div>
       </div>
@@ -920,8 +948,8 @@
           <div class="section-head">
             <h2 class="section-title">Vad som förändrades</h2>
             <p class="section-intro">
-  Resultatet blev inte bara en snyggare yta, utan en mer fungerande köpresa med tydliga effekter för både användare och verksamhet.
-</p>
+              Resultatet blev inte bara en snyggare yta, utan en mer fungerande köpresa med tydliga effekter för både användare och verksamhet.
+            </p>
           </div>
 
           <div class="result-grid">

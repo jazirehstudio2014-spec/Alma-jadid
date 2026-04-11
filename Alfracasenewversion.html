@@ -1,1 +1,184 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Case Study | Alfra Svenska</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0b0d;
+  --panel:#16171d;
+  --line:rgba(255,255,255,.1);
+  --text:#f4f1ea;
+  --muted:#b6b0a5;
+  --accent:#e65652;
+  --accent-2:#ffd166;
+  --max:1100px;
+}
+
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#0b0b0d;
+  color:var(--text);
+  line-height:1.6;
+}
+
+.wrap{width:min(100% - 32px,var(--max));margin:auto;}
+
+.topbar{
+  position:sticky;
+  top:0;
+  background:#0b0b0d;
+  border-bottom:1px solid var(--line);
+  z-index:10;
+}
+.topbar-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 0;
+}
+.nav a{
+  margin-left:20px;
+  font-size:.8rem;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.nav a:hover{color:white;}
+
+section{padding:60px 0;border-bottom:1px solid var(--line);}
+
+h1{font-size:3.5rem;line-height:1;margin:0 0 20px;}
+h2{font-size:2rem;margin-bottom:10px;}
+p{color:var(--muted);}
+
+.grid{display:grid;gap:30px;}
+.two{grid-template-columns:1fr 1fr;}
+.cards{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
+
+.card{
+  border:1px solid var(--line);
+  padding:20px;
+  background:var(--panel);
+}
+
+.hero{padding-top:80px;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.hero img{width:100%;height:100%;object-fit:cover;}
+
+.quote{
+  font-size:2rem;
+  font-weight:700;
+}
+
+@media(max-width:900px){
+  .hero-grid,.two{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <strong>Alma Stark</strong>
+    <nav class="nav">
+      <a href="chatgptnewversion.html#work">Case-studier</a>
+      <a href="chatgptnewversion.html#value">Arbetssätt</a>
+      <a href="chatgptnewversion.html#about">Om mig</a>
+      <a href="chatgptnewversion.html#contact">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <h1>Från manuell <br> försäljning till flöde</h1>
+      <p>
+        Alfra saknade en central plattform för att presentera och sälja sina digitala produkter...
+      </p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" />
+  </div>
+</section>
+
+<section>
+  <h2>Ett köpflöde som måste fungera</h2>
+  <p>
+    Projektets mål var att omvandla en manuell försäljningsmodell...
+  </p>
+
+  <div class="grid two">
+    <div class="card">
+      <h3>Målgrupp</h3>
+      <p>Persisktalande vuxna...</p>
+    </div>
+    <div class="card">
+      <h3>Utmaning</h3>
+      <p>Köpet krävde manuell kontakt...</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Bristen var inte produkten</h2>
+  <p>
+    Problemet handlade inte främst om tillgång till produkter...
+  </p>
+</section>
+
+<section>
+  <h2>Vad som bromsade köpet</h2>
+
+  <div class="grid">
+    <div class="card">Köpprocessen var beroende...</div>
+    <div class="card">Användaren saknade tydlig insikt...</div>
+    <div class="card">Det saknades flexibla betalningsalternativ...</div>
+    <div class="card">Produkterna visades inte samlat...</div>
+  </div>
+</section>
+
+<section>
+  <h2>Det jag förändrade</h2>
+
+  <div class="grid cards">
+    <div class="card">Självständigt köpflöde...</div>
+    <div class="card">Tydligare beslutsunderlag...</div>
+    <div class="card">Lägre betalningströskel...</div>
+    <div class="card">Mer överblick...</div>
+  </div>
+</section>
+
+<section>
+  <h2>Vad som förändrades</h2>
+
+  <div class="grid cards">
+    <div class="card">90%+ av köpen...</div>
+    <div class="card">0 frågor...</div>
+    <div class="card">24/7...</div>
+    <div class="card">Merförsäljning...</div>
+  </div>
+</section>
+
+<section>
+  <p class="quote">Problemet var inte produkten. Det var friktionen runt köpet.</p>
+</section>
+
+<section>
+  <h2>Från friktion till flöde</h2>
+  <p>
+    Genom att fokusera på struktur, beslutsstöd...
+  </p>
+</section>
+
+</main>
+
+</body>
+</html>

@@ -1,264 +1,1117 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Alfra Case Study</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study | Alfra Svenska</title>
+  <meta name="description" content="Case study for Alfra Svenska by Alma Stark" />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<style>
-:root{
-  --bg:#0b0b0d;
-  --panel:#16171d;
-  --line:rgba(255,255,255,.08);
-  --text:#f4f1ea;
-  --muted:#b6b0a5;
-  --accent:#e65652;
-  --accent-2:#ffd166;
-  --max:1200px;
-}
+  <style>
+    :root{
+      --bg:#0b0b0d;
+      --bg-2:#121216;
+      --panel:#16171d;
+      --panel-2:#1b1c23;
 
-body{
-  margin:0;
-  font-family:'Inter',sans-serif;
-  background:
-    radial-gradient(circle at 20% 0%, rgba(155,184,255,.14), transparent 34%),
-    radial-gradient(circle at 100% 10%, rgba(230,86,82,.12), transparent 30%),
-    linear-gradient(180deg, #0a0a0c 0%, #0d0e12 44%, #0b0b0d 100%);
-  color:var(--text);
-}
+      --line:rgba(255,255,255,.10);
+      --line-strong:rgba(255,255,255,.20);
 
-.wrap{width:min(100% - 32px,var(--max));margin:auto;}
+      --text:#f4f1ea;
+      --muted:#b6b0a5;
+      --soft:#8f8a83;
 
-.topbar{
-  position:sticky;top:0;
-  backdrop-filter:blur(14px);
-  background:rgba(10,10,12,.72);
-  border-bottom:1px solid var(--line);
-}
+      --accent:#e65652;
+      --accent-2:#ffd166;
+      --accent-3:#9bb8ff;
 
-.topbar-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px 0;
-}
+      --max:1280px;
+      --space:clamp(18px,2vw,28px);
+      --space-xl:clamp(32px,5vw,84px);
 
-.nav a{
-  margin-left:20px;
-  font-size:.8rem;
-  color:var(--muted);
-  text-transform:uppercase;
-}
-.nav a:hover{color:var(--text);}
+      --title:clamp(3rem,8vw,8rem);
+      --display:clamp(2.2rem,5vw,4.75rem);
+      --h2:clamp(1.7rem,3vw,2.8rem);
+      --h3:clamp(1.1rem,2vw,1.35rem);
+      --body:clamp(1rem,1.2vw,1.08rem);
 
-section{padding:60px 0;}
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --ease:cubic-bezier(.22,.61,.36,1);
+    }
 
-.section-head{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-  border-bottom:1px solid var(--line);
-  padding-bottom:20px;
-  margin-bottom:30px;
-}
+    *{
+      box-sizing:border-box;
+      min-width:0;
+    }
 
-.section-top{
-  font-size:.7rem;
-  text-transform:uppercase;
-  color:var(--muted);
-}
+    html{
+      scroll-behavior:smooth;
+      -webkit-text-size-adjust:100%;
+    }
 
-.hero-grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:40px;
-  align-items:end;
-}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:'Inter', system-ui, sans-serif;
+      font-size:var(--body);
+      line-height:1.6;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 14% 10%, rgba(155,184,255,.14), transparent 28%),
+        radial-gradient(circle at 86% 8%, rgba(230,86,82,.12), transparent 24%),
+        linear-gradient(180deg, #0a0a0c 0%, #0d0e12 52%, #0b0b0d 100%);
+      overflow-x:hidden;
+      position:relative;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
 
-.hero h1{
-  font-size:5rem;
-  line-height:.9;
-  margin:0;
-}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.14;
+      background-image:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size:48px 48px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.62), transparent 92%);
+      -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.62), transparent 92%);
+      z-index:0;
+    }
 
-.hero p{color:var(--muted);}
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
 
-.card{
-  border:1px solid var(--line);
-  background:var(--panel);
-  padding:20px;
-}
+    img{
+      display:block;
+      max-width:100%;
+    }
 
-.grid{
-  display:grid;
-  gap:20px;
-}
+    header, main, footer{
+      position:relative;
+      z-index:2;
+    }
 
-.cards{
-  grid-template-columns:repeat(3,1fr);
-}
+    .wrap{
+      width:min(calc(100% - 32px), var(--max));
+      margin-inline:auto;
+    }
 
-.quote{
-  font-size:3rem;
-  font-weight:800;
-}
+    .accent-dot{
+      display:inline-block;
+      width:.68rem;
+      height:.68rem;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow:0 0 0 1px rgba(255,255,255,.08);
+      flex:0 0 auto;
+    }
 
-img{width:100%;height:100%;object-fit:cover;}
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      background:rgba(10,10,12,.72);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
 
-@media(max-width:900px){
-  .hero-grid,.section-head,.cards{grid-template-columns:1fr;}
-}
-</style>
+    .topbar-inner{
+      min-height:78px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      align-items:center;
+      gap:24px;
+    }
+
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      white-space:nowrap;
+    }
+
+    .brand-mark{
+      width:14px;
+      height:14px;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow:0 0 0 1px rgba(255,255,255,.08);
+      flex:0 0 auto;
+    }
+
+    .brand-text{
+      display:grid;
+      gap:2px;
+    }
+
+    .brand-text strong{
+      font-size:.98rem;
+      font-weight:800;
+      letter-spacing:.02em;
+      line-height:1.05;
+    }
+
+    .brand-text span{
+      font-size:.72rem;
+      color:var(--soft);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      line-height:1;
+    }
+
+    .topnav{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:22px;
+      min-width:0;
+    }
+
+    .topnav a{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      min-height:44px;
+      font-size:.82rem;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      transition:color .25s ease;
+    }
+
+    .topnav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:8px;
+      width:100%;
+      height:2px;
+      background:linear-gradient(90deg, var(--accent), var(--accent-2));
+      transform:scaleX(0);
+      transform-origin:left center;
+      transition:transform .3s var(--ease);
+    }
+
+    .topnav a:hover,
+    .topnav a:focus-visible{
+      color:var(--text);
+    }
+
+    .topnav a:hover::after,
+    .topnav a:focus-visible::after{
+      transform:scaleX(1);
+    }
+
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 18px;
+      border:1px solid var(--line-strong);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-size:.82rem;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      transition:
+        transform .25s var(--ease),
+        border-color .25s ease,
+        background .25s ease;
+      white-space:nowrap;
+    }
+
+    .back-link:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.28);
+      background:rgba(255,255,255,.05);
+    }
+
+    .hero{
+      padding:var(--space-xl) 0 52px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:minmax(0,.98fr) minmax(0,1.02fr);
+      gap:54px;
+      align-items:end;
+    }
+
+    .micro{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:22px;
+      font-size:.76rem;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+    }
+
+    .hero-copy h1{
+      margin:0;
+      font-size:clamp(3.1rem, 7vw, 6.4rem);
+      line-height:.92;
+      letter-spacing:-.07em;
+      text-transform:uppercase;
+      max-width:8ch;
+      text-wrap:balance;
+    }
+
+    .hero-copy h1 span{
+      display:block;
+      color:var(--muted);
+      font-weight:300;
+    }
+
+    .hero-sub{
+      margin:24px 0 0;
+      max-width:60ch;
+      color:var(--muted);
+      font-size:1.04rem;
+    }
+
+    .meta-strip{
+      margin-top:28px;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .meta-card{
+      border:1px solid var(--line-strong);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      padding:20px;
+      min-height:150px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      gap:10px;
+      box-shadow:var(--shadow);
+    }
+
+    .meta-card small{
+      display:block;
+      color:var(--accent-2);
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+    }
+
+    .meta-card strong{
+      display:block;
+      font-size:1rem;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .hero-card{
+      position:relative;
+      width:100%;
+      aspect-ratio:4 / 5;
+      overflow:hidden;
+      border:1px solid var(--line-strong);
+      background:var(--panel-2);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%);
+      transform:scale(1.02);
+      transition:transform .7s var(--ease), filter .45s ease;
+    }
+
+    .hero-card:hover img{
+      transform:scale(1.05);
+      filter:grayscale(18%);
+    }
+
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 35%, rgba(0,0,0,.24));
+      pointer-events:none;
+    }
+
+    .hero-overlay{
+      position:absolute;
+      inset:auto 0 0 0;
+      padding:20px;
+      background:linear-gradient(to top, rgba(0,0,0,.84), rgba(0,0,0,.28), transparent);
+      z-index:2;
+    }
+
+    .hero-overlay small{
+      display:block;
+      margin-bottom:6px;
+      color:var(--muted);
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+    }
+
+    .hero-overlay p{
+      margin:0;
+      color:var(--soft);
+      font-size:.94rem;
+      line-height:1.55;
+      max-width:32ch;
+    }
+
+    .section{
+      padding:42px 0;
+      border-bottom:1px solid var(--line);
+      scroll-margin-top:104px;
+    }
+
+    .section-frame{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.022), rgba(255,255,255,.012));
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .section-top{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:16px 20px;
+      border-bottom:1px solid var(--line);
+      font-size:.74rem;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      background:rgba(255,255,255,.012);
+    }
+
+    .section-body{
+      padding:32px;
+    }
+
+    .section-head{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:16px;
+      margin-bottom:24px;
+    }
+
+    .section-title{
+      margin:0;
+      font-size:var(--display);
+      line-height:.94;
+      letter-spacing:-.07em;
+      text-transform:uppercase;
+      max-width:12ch;
+      text-wrap:balance;
+    }
+
+    .section-intro{
+      margin:0;
+      color:var(--muted);
+      font-size:1rem;
+      max-width:68ch;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+      gap:18px;
+    }
+
+    .block{
+      border:1px solid var(--line-strong);
+      background:var(--panel);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .block h3{
+      margin:0 0 14px;
+      font-size:.94rem;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--accent-2);
+    }
+
+    .block p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .feature-image{
+      margin-top:22px;
+      border:1px solid var(--line-strong);
+      overflow:hidden;
+      background:var(--panel-2);
+      box-shadow:var(--shadow);
+      aspect-ratio:16 / 7;
+      position:relative;
+    }
+
+    .feature-image.tall{
+      aspect-ratio:16 / 9;
+      margin-top:0;
+    }
+
+    .feature-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:grayscale(100%);
+      transition:transform .7s var(--ease), filter .45s ease;
+    }
+
+    .feature-image:hover img{
+      transform:scale(1.04);
+      filter:grayscale(18%);
+    }
+
+    .feature-image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, transparent 42%, rgba(0,0,0,.12) 100%);
+      pointer-events:none;
+    }
+
+    .list{
+      display:grid;
+      gap:14px;
+    }
+
+    .list-item{
+      display:grid;
+      grid-template-columns:22px 1fr;
+      gap:14px;
+      align-items:start;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+    }
+
+    .list-item:first-child{
+      border-top:none;
+      padding-top:0;
+    }
+
+    .list-num{
+      color:var(--accent-2);
+      font-weight:800;
+      font-size:.84rem;
+      line-height:1.5;
+    }
+
+    .list-text{
+      color:var(--muted);
+    }
+
+    .insight-panel{
+      border:1px solid rgba(255,255,255,.14);
+      padding:34px 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.012)),
+        radial-gradient(circle at 10% 15%, rgba(155,184,255,.10), transparent 32%),
+        radial-gradient(circle at 88% 12%, rgba(230,86,82,.08), transparent 24%);
+      box-shadow:var(--shadow);
+    }
+
+    .insight-label{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:14px;
+      color:var(--muted);
+      font-size:.74rem;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+    }
+
+    .insight-title{
+      margin:0;
+      max-width:15ch;
+      font-size:clamp(2.1rem, 5vw, 4.2rem);
+      line-height:.95;
+      letter-spacing:-.07em;
+      text-transform:uppercase;
+      text-wrap:balance;
+    }
+
+    .insight-text{
+      margin:20px 0 0;
+      max-width:62ch;
+      color:var(--muted);
+      font-size:1.06rem;
+    }
+
+    .decision-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+    }
+
+    .decision-card{
+      border:1px solid var(--line-strong);
+      background:var(--panel);
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:210px;
+      box-shadow:var(--shadow);
+    }
+
+    .decision-card h3{
+      margin:0;
+      font-size:.94rem;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--accent-2);
+    }
+
+    .decision-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .decision-card strong{
+      color:var(--text);
+      font-weight:700;
+    }
+
+    .result-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:16px;
+    }
+
+    .result-card{
+      border:1px solid var(--line-strong);
+      background:var(--panel);
+      padding:22px;
+      min-height:190px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:16px;
+      box-shadow:var(--shadow);
+    }
+
+    .result-card strong{
+      font-size:2rem;
+      line-height:1;
+      letter-spacing:-.06em;
+      color:var(--accent-2);
+    }
+
+    .result-card p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .quote-panel{
+      border:1px solid var(--line-strong);
+      padding:38px 28px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.02), rgba(255,255,255,.008)),
+        radial-gradient(circle at 10% 50%, rgba(155,184,255,.10), transparent 30%),
+        radial-gradient(circle at 90% 25%, rgba(230,86,82,.08), transparent 22%);
+      box-shadow:var(--shadow);
+    }
+
+    .quote-panel p{
+      margin:0;
+      max-width:18ch;
+      font-size:clamp(2rem, 4vw, 4rem);
+      line-height:1.02;
+      letter-spacing:-.06em;
+      text-transform:uppercase;
+      font-weight:800;
+      text-wrap:balance;
+    }
+
+    .footer{
+      padding:24px 0 34px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    @media (max-width: 1100px){
+      .hero-grid,
+      .two-col,
+      .decision-grid,
+      .result-grid{
+        grid-template-columns:1fr;
+      }
+
+      .meta-strip{
+        grid-template-columns:1fr;
+      }
+
+      .hero-card{
+        max-width:700px;
+      }
+    }
+
+    @media (max-width: 900px){
+      .topbar-inner{
+        grid-template-columns:auto auto;
+      }
+
+      .topnav{
+        display:none;
+      }
+    }
+
+    @media (max-width: 760px){
+      .wrap{
+        width:min(calc(100% - 24px), var(--max));
+      }
+
+      .topbar-inner{
+        min-height:68px;
+        gap:14px;
+      }
+
+      .brand-text strong{
+        font-size:.9rem;
+      }
+
+      .brand-text span{
+        font-size:.66rem;
+      }
+
+      .back-link{
+        min-height:42px;
+        padding:0 14px;
+        font-size:.74rem;
+      }
+
+      .hero{
+        padding:42px 0 28px;
+      }
+
+      .hero-copy h1{
+        font-size:clamp(2.4rem, 12vw, 4rem);
+        max-width:100%;
+      }
+
+      .hero-sub{
+        font-size:.98rem;
+        line-height:1.72;
+      }
+
+      .hero-card{
+        aspect-ratio:4 / 5.1;
+      }
+
+      .section{
+        padding:28px 0;
+      }
+
+      .section-top{
+        padding:14px 16px;
+        font-size:.7rem;
+      }
+
+      .section-body{
+        padding:18px 16px;
+      }
+
+      .section-head{
+        gap:14px;
+        margin-bottom:20px;
+      }
+
+      .section-title{
+        font-size:clamp(1.6rem, 9vw, 2.7rem);
+        max-width:100%;
+      }
+
+      .section-intro{
+        font-size:.96rem;
+        line-height:1.72;
+      }
+
+      .insight-title{
+        font-size:clamp(1.8rem, 10vw, 3rem);
+        max-width:100%;
+      }
+
+      .block,
+      .decision-card,
+      .result-card,
+      .quote-panel,
+      .insight-panel,
+      .meta-card{
+        padding:18px;
+      }
+
+      .decision-card{
+        min-height:auto;
+      }
+
+      .feature-image,
+      .feature-image.tall{
+        aspect-ratio:16 / 10;
+      }
+
+      .quote-panel p{
+        font-size:clamp(1.55rem, 9vw, 2.4rem);
+        max-width:100%;
+        line-height:1.08;
+      }
+    }
+
+    @media (max-width: 420px){
+      .wrap{
+        width:min(calc(100% - 20px), var(--max));
+      }
+
+      .hero-copy h1{
+        font-size:clamp(2.1rem, 12vw, 3rem);
+      }
+
+      .section-body{
+        padding:16px 14px;
+      }
+
+      .back-link{
+        padding:0 12px;
+        letter-spacing:.1em;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header class="topbar">
-<div class="wrap topbar-inner">
-<strong>Alma Stark</strong>
-<nav class="nav">
-<a href="chatgptnewversion.html#work">Case-studier</a>
-<a href="chatgptnewversion.html#value">Arbetssätt</a>
-<a href="chatgptnewversion.html#about">Om mig</a>
-<a href="chatgptnewversion.html#contact">Kontakt</a>
-</nav>
-</div>
-</header>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html#top" class="brand">
+        <span class="brand-mark"></span>
+        <span class="brand-text">
+          <strong>Alma Stark</strong>
+          <span>Digital Content Designer</span>
+        </span>
+      </a>
 
-<main class="wrap">
+      <nav class="topnav" aria-label="Primary">
+        <a href="#overview">Överblick</a>
+        <a href="#problem">Problem</a>
+        <a href="#solution">Lösning</a>
+        <a href="#results">Resultat</a>
+        <a href="#reflection">Reflektion</a>
+      </nav>
 
-<!-- HERO -->
-<section class="hero">
-<div class="hero-grid">
+      <a href="index.html#projects" class="back-link">← Tillbaka till case</a>
+    </div>
+  </header>
 
-<div>
-<div class="section-top">Case 01 / Alfra Svenska</div>
+  <main>
 
-<h1>Från manuell<br>försäljning till flöde</h1>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="micro">
+            <span class="accent-dot"></span>
+            <span>Case 01 / Alfra Svenska</span>
+          </div>
 
-<p>
-Alfra saknade en central plattform för att presentera och sälja sina digitala produkter. Köpprocessen var beroende av direktkontakt via Instagram, vilket skapade friktion, väntetid och onödiga hinder för både användare och verksamhet.
-</p>
+          <h1>
+            Från manuell
+            <span>försäljning till flöde</span>
+          </h1>
 
-<div class="grid cards" style="margin-top:30px;">
-<div class="card"><strong>Roll</strong><br>Research, innehållsstruktur, UX/UI och implementering</div>
-<div class="card"><strong>Fokus</strong><br>Självständig köpresa, förtroende och tillgänglighet</div>
-<div class="card"><strong>Resultat</strong><br>Över 90% av köpen genomfördes via Klarna</div>
-</div>
+          <p class="hero-sub">
+            Alfra saknade en central plattform för att presentera och sälja sina digitala produkter. Köpprocessen var beroende av direktkontakt via Instagram, vilket skapade friktion, väntetid och onödiga hinder för både användare och verksamhet.
+          </p>
 
-</div>
+          <div class="meta-strip">
+            <div class="meta-card">
+              <small>Roll</small>
+              <strong>Research, innehållsstruktur, UX/UI och implementering</strong>
+            </div>
 
-<div>
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" />
-</div>
+            <div class="meta-card">
+              <small>Fokus</small>
+              <strong>Självständig köpresa, förtroende och tillgänglighet</strong>
+            </div>
 
-</div>
-</section>
+            <div class="meta-card">
+              <small>Resultat</small>
+              <strong>Över 90% av köpen genomfördes via Klarna</strong>
+            </div>
+          </div>
+        </div>
 
-<!-- OVERVIEW -->
-<section>
-<div class="section-head">
-<div>
-<div class="section-top">Överblick</div>
-<h2>Ett köpflöde som måste fungera</h2>
-</div>
-<p>Projektets mål var att omvandla en manuell försäljningsmodell till en tydlig och skalbar digital lösning...</p>
-</div>
+        <div class="hero-card">
+          <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80"
+            alt="Placeholder image for Alfra case hero"
+          />
+          <div class="hero-overlay">
+            <small>Om Alfra</small>
+            <p>Alfra är en digital plattform med utbildningsstöd för vuxna språkinlärare i Sverige, med fokus på tydliga resurser, självständig inlärning och praktisk språkutveckling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="grid cards">
-<div class="card"><strong>Målgrupp</strong><br>Persisktalande vuxna...</div>
-<div class="card"><strong>Utmaning</strong><br>Köpet krävde manuell kontakt via Instagram...</div>
-</div>
-</section>
+    <section class="section" id="overview">
+      <div class="wrap section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Överblick</span>
+        </div>
 
-<!-- INSIGHT -->
-<section>
-<div class="section-head">
-<div>
-<div class="section-top">Insikt</div>
-<h2>Bristen var inte produkten</h2>
-</div>
-<p>Problemet handlade inte främst om tillgång till produkter...</p>
-</div>
-</section>
+        <div class="section-body">
+          <div class="section-head">
+            <h2 class="section-title">Ett köpflöde som måste fungera</h2>
+            <p class="section-intro">
+              Projektets mål var att omvandla en manuell försäljningsmodell till en tydlig och skalbar digital lösning. Fokus låg inte bara på att sälja produkter, utan på att göra hela köpresan begriplig, trygg och möjlig att genomföra utan direktkontakt.
+            </p>
+          </div>
 
-<!-- PROBLEM -->
-<section>
-<div class="section-head">
-<div>
-<div class="section-top">Problem</div>
-<h2>Vad som bromsade köpet</h2>
-</div>
-<p>Innan webbplatsen fanns behövde användaren hitta produkterna...</p>
-</div>
+          <div class="two-col">
+            <div class="block">
+              <h3>Målgrupp</h3>
+              <p>
+                Persisktalande vuxna som lär sig svenska som andraspråk och söker tydliga, praktiska och tillgängliga lösningar för att förbättra sin kommunikation eller klara språktester.
+              </p>
+            </div>
 
-<div class="grid cards">
-<div class="card">01 Köpprocessen var beroende...</div>
-<div class="card">02 Användaren saknade tydlig insikt...</div>
-<div class="card">03 Det saknades flexibla betalningsalternativ...</div>
-<div class="card">04 Produkterna visades inte samlat...</div>
-</div>
-</section>
+            <div class="block">
+              <h3>Utmaning</h3>
+              <p>
+                Köpet krävde manuell kontakt via Instagram, informationen var splittrad, betalningsalternativen begränsade och användaren saknade tillräckligt underlag för att känna sig trygg före köp.
+              </p>
+            </div>
+          </div>
 
-<!-- SOLUTION -->
-<section>
-<div class="section-head">
-<div>
-<div class="section-top">Lösning</div>
-<h2>Det jag förändrade</h2>
-</div>
-<p>Lösningen byggde på att minska osäkerhet...</p>
-</div>
+          <div class="feature-image">
+            <img
+              src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1600&q=80"
+              alt="Placeholder image for overview section"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="grid cards">
-<div class="card"><strong>Beslut 01</strong><br>Självständigt köpflöde...</div>
-<div class="card"><strong>Beslut 02</strong><br>Tydligare beslutsunderlag...</div>
-<div class="card"><strong>Beslut 03</strong><br>Lägre betalningströskel...</div>
-<div class="card"><strong>Beslut 04</strong><br>Mer överblick...</div>
-</div>
-</section>
+    <section class="section">
+      <div class="wrap">
+        <div class="insight-panel">
+          <div class="insight-label">
+            <span class="accent-dot"></span>
+            <span>Insikt</span>
+          </div>
 
-<!-- RESULT -->
-<section>
-<div class="section-head">
-<div>
-<div class="section-top">Resultat</div>
-<h2>Vad som förändrades</h2>
-</div>
-<p>Resultatet blev inte bara en snyggare yta...</p>
-</div>
+          <h2 class="insight-title">Bristen var inte produkten</h2>
 
-<div class="grid cards">
-<div class="card"><strong>90%+</strong><br>av köpen genomfördes via Klarna...</div>
-<div class="card"><strong>0</strong><br>återkommande frågor...</div>
-<div class="card"><strong>24/7</strong><br>självständig köpprocess...</div>
-<div class="card"><strong>Merförsäljning</strong><br>ökade när...</div>
-</div>
-</section>
+          <p class="insight-text">
+            Problemet handlade inte främst om tillgång till produkter, utan om brist på struktur, förtroende och självständighet i köpprocessen. Användaren behövde kunna förstå, jämföra och fatta beslut utan att vara beroende av direktkontakt.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<!-- QUOTE -->
-<section>
-<p class="quote">Problemet var inte produkten. Det var friktionen runt köpet.</p>
-</section>
+    <section class="section" id="problem">
+      <div class="wrap section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Problem</span>
+        </div>
 
-<!-- REFLECTION -->
-<section>
-<div class="section-head">
-<div>
-<div class="section-top">Reflektion</div>
-<h2>FRÅN FRIKTION TILL FLÖDE</h2>
-</div>
-<p>Genom att fokusera på struktur, beslutsstöd...</p>
-</div>
-</section>
+        <div class="section-body">
+          <div class="section-head">
+            <h2 class="section-title">Vad som bromsade köpet</h2>
+            <p class="section-intro">
+              Innan webbplatsen fanns behövde användaren hitta produkterna via Instagram, ställa frågor i direktmeddelanden och vänta på svar. Det skapade friktion, osäkerhet och gjorde köpet onödigt beroende av manuell kommunikation.
+            </p>
+          </div>
 
-</main>
+          <div class="two-col">
+            <div class="list">
+              <div class="list-item">
+                <div class="list-num">01</div>
+                <div class="list-text">Köpprocessen var beroende av direktkontakt, vilket ledde till väntetid och återkommande frågor.</div>
+              </div>
 
-<footer class="wrap" style="padding:40px 0;color:#888;">
-© 2026 Alma Stark
-</footer>
+              <div class="list-item">
+                <div class="list-num">02</div>
+                <div class="list-text">Användaren saknade tydlig insikt i vad produkten innehöll och tog därför ett köpbeslut med hög upplevd risk.</div>
+              </div>
+
+              <div class="list-item">
+                <div class="list-num">03</div>
+                <div class="list-text">Det saknades flexibla betalningsalternativ, vilket gjorde att vissa användare avstod från att köpa.</div>
+              </div>
+
+              <div class="list-item">
+                <div class="list-num">04</div>
+                <div class="list-text">Produkterna visades inte samlat, vilket minskade både överblick och möjlighet till merförsäljning.</div>
+              </div>
+            </div>
+
+            <div class="feature-image tall">
+              <img
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80"
+                alt="Placeholder image for problem section"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="solution">
+      <div class="wrap section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Lösning</span>
+        </div>
+
+        <div class="section-body">
+          <div class="section-head">
+            <h2 class="section-title">Det jag förändrade</h2>
+            <p class="section-intro">
+              Lösningen byggde på att minska osäkerhet och göra köpresan mer självständig. Jag fokuserade på struktur, produktförståelse och betalningströsklar, alltså sådant som faktiskt påverkar om någon köper eller lämnar.
+            </p>
+          </div>
+
+          <div class="decision-grid">
+            <div class="decision-card">
+              <h3>Beslut 01</h3>
+              <p><strong>Självständigt köpflöde.</strong> Jag skapade ett direkt köpsystem på webbplatsen för att minska beroendet av manuell kommunikation och göra processen snabbare och mer skalbar.</p>
+            </div>
+
+            <div class="decision-card">
+              <h3>Beslut 02</h3>
+              <p><strong>Tydligare beslutsunderlag.</strong> Jag lade till produktbeskrivningar och videobaserad preview för att ge användaren bättre förståelse före köp.</p>
+            </div>
+
+            <div class="decision-card">
+              <h3>Beslut 03</h3>
+              <p><strong>Lägre betalningströskel.</strong> Jag integrerade Klarna och fler betalningsalternativ för att göra köpet mer tillgängligt för fler användare.</p>
+            </div>
+
+            <div class="decision-card">
+              <h3>Beslut 04</h3>
+              <p><strong>Mer överblick och förtroende.</strong> Jag samlade alla produkter på en gemensam plattform med recensioner och tydlig kontaktinformation.</p>
+            </div>
+          </div>
+
+          <div class="feature-image">
+            <img
+              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80"
+              alt="Placeholder image for solution section"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="wrap section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Resultat</span>
+        </div>
+
+        <div class="section-body">
+          <div class="section-head">
+            <h2 class="section-title">Vad som förändrades</h2>
+            <p class="section-intro">
+              Resultatet blev inte bara en snyggare yta, utan en mer fungerande köpresa med tydliga effekter för både användare och verksamhet.
+            </p>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-card">
+              <strong>90%+</strong>
+              <p>av köpen genomfördes via Klarna, vilket visar att flexibla betalningslösningar hade direkt påverkan på konvertering.</p>
+            </div>
+
+            <div class="result-card">
+              <strong>0</strong>
+              <p>återkommande frågor om betalningssätt inom och utanför Sverige efter att webbplatsen lanserats.</p>
+            </div>
+
+            <div class="result-card">
+              <strong>24/7</strong>
+              <p>självständig köpprocess utan behov av direktkontakt med säljaren.</p>
+            </div>
+
+            <div class="result-card">
+              <strong>Merförsäljning</strong>
+              <p>ökade när användaren kunde se alla produkter samlade på en och samma plattform.</p>
+            </div>
+          </div>
+
+          <div class="feature-image">
+            <img
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80"
+              alt="Placeholder image for results section"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="quote-panel">
+          <p>Problemet var inte produkten. Det var friktionen runt köpet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reflection">
+      <div class="wrap section-frame">
+        <div class="section-top">
+          <span class="accent-dot"></span>
+          <span>Reflektion</span>
+        </div>
+
+        <div class="section-body">
+          <div class="section-head">
+            <h2 class="section-title">Från friktion till flöde</h2>
+            <p class="section-intro">
+              Genom att fokusera på struktur, beslutsstöd och användarens behov av trygghet skapades en lösning som gjorde köpet enklare, tydligare och mindre beroende av manuell kontakt.
+            </p>
+          </div>
+
+          <div class="feature-image">
+            <img
+              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80"
+              alt="Placeholder image for reflection section"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      © 2026 Alma Stark | Digital Content Designer
+    </div>
+  </footer>
 
 </body>
 </html>

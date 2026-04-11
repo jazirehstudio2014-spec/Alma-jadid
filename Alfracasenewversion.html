@@ -16,13 +16,13 @@
   --muted:#b6b0a5;
   --accent:#e65652;
   --accent-2:#ffd166;
-  --max:1100px;
+  --max:1200px;
 }
 
 body{
   margin:0;
   font-family:'Inter',sans-serif;
-  background:#0b0b0d;
+  background:var(--bg);
   color:var(--text);
   line-height:1.6;
 }
@@ -50,33 +50,48 @@ body{
 }
 .nav a:hover{color:white;}
 
-section{padding:60px 0;border-bottom:1px solid var(--line);}
+section{padding:70px 0;border-bottom:1px solid var(--line);}
 
-h1{font-size:3.5rem;line-height:1;margin:0 0 20px;}
-h2{font-size:2rem;margin-bottom:10px;}
-p{color:var(--muted);}
+.section-head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  margin-bottom:30px;
+}
+.section-head h2{
+  font-size:2.6rem;
+  margin:0;
+}
+.section-head p{
+  color:var(--muted);
+}
 
-.grid{display:grid;gap:30px;}
-.two{grid-template-columns:1fr 1fr;}
-.cards{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
+.hero h1{
+  font-size:4rem;
+  line-height:.95;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
 
 .card{
   border:1px solid var(--line);
-  padding:20px;
   background:var(--panel);
+  padding:20px;
 }
 
-.hero{padding-top:80px;}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-.hero img{width:100%;height:100%;object-fit:cover;}
-
 .quote{
-  font-size:2rem;
-  font-weight:700;
+  font-size:2.2rem;
+  font-weight:800;
 }
 
 @media(max-width:900px){
-  .hero-grid,.two{grid-template-columns:1fr;}
+  .section-head{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -97,36 +112,42 @@ p{color:var(--muted);}
 
 <main class="wrap">
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-grid">
-    <div>
-      <h1>Från manuell <br> försäljning till flöde</h1>
-      <p>
-        Alfra saknade en central plattform för att presentera och sälja sina digitala produkter...
-      </p>
-    </div>
-    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" />
-  </div>
-</section>
-
-<section>
-  <h2>Ett köpflöde som måste fungera</h2>
+  <h1>Från manuell<br>försäljning till flöde</h1>
   <p>
-    Projektets mål var att omvandla en manuell försäljningsmodell...
+    Alfra saknade en central plattform för att presentera och sälja sina digitala produkter. Köpprocessen var beroende av direktkontakt via Instagram, vilket skapade friktion, väntetid och onödiga hinder för både användare och verksamhet.
   </p>
 
-  <div class="grid two">
+  <div class="cards" style="margin-top:30px;">
+    <div class="card"><strong>Roll</strong><br>Research, innehållsstruktur, UX/UI och implementering</div>
+    <div class="card"><strong>Fokus</strong><br>Självständig köpresa, förtroende och tillgänglighet</div>
+    <div class="card"><strong>Resultat</strong><br>Över 90% av köpen genomfördes via Klarna</div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section>
+  <div class="section-head">
+    <h2>Ett köpflöde som måste fungera</h2>
+    <p>
+      Projektets mål var att omvandla en manuell försäljningsmodell till en tydlig och skalbar digital lösning...
+    </p>
+  </div>
+
+  <div class="cards">
     <div class="card">
-      <h3>Målgrupp</h3>
-      <p>Persisktalande vuxna...</p>
+      <strong>Målgrupp</strong><br>
+      Persisktalande vuxna som lär sig svenska...
     </div>
     <div class="card">
-      <h3>Utmaning</h3>
-      <p>Köpet krävde manuell kontakt...</p>
+      <strong>Utmaning</strong><br>
+      Köpet krävde manuell kontakt via Instagram...
     </div>
   </div>
 </section>
 
+<!-- INSIGHT -->
 <section>
   <h2>Bristen var inte produkten</h2>
   <p>
@@ -134,51 +155,60 @@ p{color:var(--muted);}
   </p>
 </section>
 
+<!-- PROBLEM -->
 <section>
   <h2>Vad som bromsade köpet</h2>
 
-  <div class="grid">
-    <div class="card">Köpprocessen var beroende...</div>
-    <div class="card">Användaren saknade tydlig insikt...</div>
-    <div class="card">Det saknades flexibla betalningsalternativ...</div>
-    <div class="card">Produkterna visades inte samlat...</div>
+  <div class="cards">
+    <div class="card">01 Köpprocessen var beroende av direktkontakt...</div>
+    <div class="card">02 Användaren saknade tydlig insikt...</div>
+    <div class="card">03 Det saknades flexibla betalningsalternativ...</div>
+    <div class="card">04 Produkterna visades inte samlat...</div>
   </div>
 </section>
 
+<!-- SOLUTION -->
 <section>
   <h2>Det jag förändrade</h2>
 
-  <div class="grid cards">
-    <div class="card">Självständigt köpflöde...</div>
-    <div class="card">Tydligare beslutsunderlag...</div>
-    <div class="card">Lägre betalningströskel...</div>
-    <div class="card">Mer överblick...</div>
+  <div class="cards">
+    <div class="card"><strong>Beslut 01</strong><br>Självständigt köpflöde...</div>
+    <div class="card"><strong>Beslut 02</strong><br>Tydligare beslutsunderlag...</div>
+    <div class="card"><strong>Beslut 03</strong><br>Lägre betalningströskel...</div>
+    <div class="card"><strong>Beslut 04</strong><br>Mer överblick...</div>
   </div>
 </section>
 
+<!-- RESULT -->
 <section>
   <h2>Vad som förändrades</h2>
 
-  <div class="grid cards">
-    <div class="card">90%+ av köpen...</div>
-    <div class="card">0 frågor...</div>
-    <div class="card">24/7...</div>
-    <div class="card">Merförsäljning...</div>
+  <div class="cards">
+    <div class="card"><strong>90%+</strong><br>av köpen genomfördes via Klarna...</div>
+    <div class="card"><strong>0</strong><br>återkommande frågor...</div>
+    <div class="card"><strong>24/7</strong><br>självständig köpprocess...</div>
+    <div class="card"><strong>Merförsäljning</strong><br>ökade när...</div>
   </div>
 </section>
 
+<!-- QUOTE -->
 <section>
   <p class="quote">Problemet var inte produkten. Det var friktionen runt köpet.</p>
 </section>
 
+<!-- REFLECTION -->
 <section>
-  <h2>Från friktion till flöde</h2>
+  <h2>FRÅN FRIKTION TILL FLÖDE</h2>
   <p>
-    Genom att fokusera på struktur, beslutsstöd...
+    Genom att fokusera på struktur, beslutsstöd och användarens behov...
   </p>
 </section>
 
 </main>
+
+<footer class="wrap" style="padding:40px 0;color:#888;">
+  © 2026 Alma Stark
+</footer>
 
 </body>
 </html>

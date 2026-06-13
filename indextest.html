@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Drawn Title Effect</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+
+        body {
+            background-color: #F3C63F; /* رنگ زرد پس‌زمینه ویدیو */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Rubik+Mono+One', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 0.9;
+            /* اعمال فیلتر SVG برای ایجاد حالت دست‌نویس و لرزان */
+            filter: url(#hand-drawn) url(#boiling-effect); 
+        }
+
+        .line {
+            display: block;
+            font-weight: 900;
+        }
+
+        .red-text {
+            color: #D61C1C; /* رنگ قرمز متن */
+            font-size: 5rem;
+            letter-spacing: -2px;
+            /* ایجاد سایه مشکی ضخیم دور متن */
+            text-shadow: 
+                -3px -3px 0 #000,  
+                 3px -3px 0 #000,
+                -3px  3px 0 #000,
+                 3px  3px 0 #000,
+                 5px  5px 0 #000;
+        }
+
+        .white-text {
+            color: #FFFFFF; /* رنگ سفید متن پایین */
+            font-size: 6rem;
+            letter-spacing: -3px;
+            text-shadow: 
+                -3px -3px 0 #000,  
+                 3px -3px 0 #000,
+                -3px  3px 0 #000,
+                 3px  3px 0 #000,
+                 6px  6px 0 #000;
+        }
+
+        /* انیمیشن فریم به فریم برای تغییر فرکانس فیلتر و ایجاد لرزش */
+        @keyframes boil {
+            0% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="line red-text">Hand</span>
+        <span class="line red-text">Drawn</span>
+        <span class="line white-text">Title</span>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <defs>
+            <filter id="hand-drawn">
+                <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+
+            <filter id="boiling-effect">
+                <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="noise">
+                    <animate attributeName="seed" from="1" to="100" dur="0.6s" repeatCount="indefinite" steps="5" />
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
+
+</body>
+</html>
